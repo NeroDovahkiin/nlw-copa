@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*No agranda las medidas si agrego padding*/
+}
+
+:root{
+    --card-color-primary: #f7dd43;
+    --card-border-color: #746615;
+    --card-bg-color: #1d1c19;
+}
+
+body.blue{
+    --card-color-primary: #338af3;
+    --card-border-color: #338af3;
+    --card-bg-color: #27263f;
+}
+
+body.green{
+    --card-color-primary: #33f373;
+    --card-border-color: #33f373;
+    --card-bg-color: #263f2d;
+}
+
+body {
+    background-color: #121214;
+    background-image: url(./assets/bg.svg);
+    background-position-x: center;
+    background-position-y: -715px;
+}
+
+body *{
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+#app {
+    width: fit-content;
+    /*que ocupe el tamaño del contenido*/
+    margin: 52px auto;
+}
+
+header {
+    margin-bottom: 63px;
+    text-align: center;
+}
+
+#cards{
+    display: flex;
+    flex-direction: column;
+    gap:32px;
+}
+
+.card {
+    padding: 32px 23px;
+    text-align: center;
+    /*funciona para display inline*/
+    background-color: var(--card-bg-color);
+    border-radius: 6px;
+    border-bottom: 2px solid var(--card-color-primary);
+}
+
+.card h2 {
+    /*flex me desbloquea propiedades como gap, o align items, tambien el justify content*/
+    display: flex;
+    justify-content: center; /*Alineacion horizontal*/
+    gap: 16px;
+    padding: 8px 16px;
+    border: 1px solid var(--card-border-color);
+    border-radius: 6px;
+    width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 53px;
+    align-items: center; /*alineacion vertical*/
+    color: #f7dd43;
+}
+
+.card h2 span{
+    color: #e1e1e6;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.card ul{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 270px;
+}
+
+.card ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/*esto quiere decir, es un li que tenga un li anterior*/
+.card ul li + li{
+    padding-top: 24px;
+    border-top: 1px solid #323238;
+}
+
+.card ul li strong{
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 125%;
+    color: #e1e1e6;
+}
+
+.card ul li strong:hover, .card ul li img:hover, .card h2:hover{
+    transform: scale(1.1);
+}
+
+.card ul li strong, .card ul li img, .card h2{
+    transition: transform 0.3s;
+}
+
+.card{
+    opacity: 0;
+    animation: appear 1.4s forwards; /*forwards uso para mantener la propiedad de opacidad en 1 luego de animar*/
+}
+
+@keyframes appear{
+    0%{
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/*de 400px para arriba*/
+@media(min-width:1012px){
+    #cards{
+        max-width: 1012px;
+        flex-direction: row;
+        flex-wrap: wrap; /*si llega al width maximo, 1012 lo tira hacia abajo*/
+    }
+}
